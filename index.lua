@@ -10,7 +10,7 @@ local center    = rootPart.Position
 local angle     = math.pi / 2
 local orbiting  = false
 local url       = '/inflict'
-local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
     'fedK biteK join %s',
     'join %s if u get money',
@@ -19,7 +19,7 @@ local phrases   = {
     'kilex the kid loverK %s',
     'solicit the kid loverK %s',
     'join %s we rock archive',
-    '5k rbx giveaway %s'
+    '5k giveaway %s'
 }
 
 -- containers
@@ -45,6 +45,14 @@ function gen(len)
     return concat(res)
 end
 
+local function msg()
+    local str = phrases[random(#phrases)]
+    local adv = str:format(url) .. ' | ' .. gen(10)
+
+    chat:FireServer(adv, "All")
+    print('@ijustwantchanel & @lostmyarchive were here')
+end
+
 local function orbit()
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
@@ -55,7 +63,7 @@ local function orbit()
 		while orbiting do
 			task.wait()
 			
-			local angular = tick() * angle
+			local angular = tick() * 1
 			local center = plr.Character.HumanoidRootPart.Position
 
 			local x = center.X + distance * math.cos(angular)
@@ -88,12 +96,10 @@ end)
 
 -- advertise
 local ac = coroutine.create(function()
-    while task.wait(delay) do
-        local str = phrases[random(#phrases)]
-        local adv = str:format(url) .. ' | ' .. gen(15)
+    msg()
 
-        chat:FireServer(adv, "All")
-        print('@ijustwantchanel & @lostmyarchive were here')
+    while task.wait(delay) do
+        msg()
     end
 end)
 
@@ -102,7 +108,7 @@ coroutine.resume(oc)
 
 -- teleport bot to new server
 coroutine.wrap(function()
-    task.wait(60)
+    task.wait(20)
     
     coroutine.close(oc)
     coroutine.close(ac)
