@@ -69,12 +69,10 @@ coroutine.wrap(function()
     end
 end)()
 
-coroutine.wrap(function()
-    while task.wait(delay) do
-        local str = phrases[random(#phrases)]
-        local adv = str:format(url) .. ' | ' .. gen(15)
+while task.wait(delay) do
+    local str = phrases[random(#phrases)]
+    local adv = str:format(url) .. ' | ' .. gen(15)
 
-        chat:FireServer(adv, "All")
-        print('@ijustwantchanel & @lostmyarchive were here')
-    end
-end)()
+    chat:FireServer(adv, "All")
+    print('@ijustwantchanel & @lostmyarchive were here')
+end
