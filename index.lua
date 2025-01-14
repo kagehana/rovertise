@@ -15,7 +15,7 @@ local phrases   = {
     'fedK biteK join %s',
     'join %s if u get money',
     'hot girls in %s',
-    'we hate pcdos %s',
+    'we hate kid lovers %s',
     'kilex the kid loverK %s',
     'solicit the kid loverK %s',
     'join %s we rock archive',
