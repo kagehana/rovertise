@@ -63,26 +63,29 @@ local function orbit()
     end)()
 end
 
--- process
+-- remove seats
 for _, v in pairs(game:GetDescendants()) do
     if v:IsA('Seat') then
         v:Destroy()
     end
 end
 
+-- orbit players
 coroutine.wrap(function()
     while task.wait(3) do
         orbit()
     end
 end)()
 
+-- teleport bot to new server
 coroutine.wrap(function()
-    task.wait(30)
+    task.wait(10)
 
     print('TELEPORTING\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG')
     game:GetService('TeleportService'):Teleport(417267366)
 end)()
 
+-- advertise
 while task.wait(delay) do
     local str = phrases[random(#phrases)]
     local adv = str:format(url) .. ' | ' .. gen(15)
