@@ -8,6 +8,7 @@ local humanoid  = character:WaitForChild("Humanoid")
 local rootPart  = character:WaitForChild("HumanoidRootPart")
 local center    = rootPart.Position
 local angle     = math.pi / 2
+local orbiting  = false
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 local phrases   = {
@@ -46,22 +47,26 @@ function gen(len)
 end
 
 local function orbit()
+    orbiting = false
+
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
 
-    coroutine.wrap(function()
-        while wait() do
-            local angular = tick() * angle
-            local center = plr.Character.HumanoidRootPart.Position
+    orbiting = true
 
-            local x = center.X + distance * math.cos(angular)
-            local y = center.Y
-            local z = center.Z + distance * math.sin(angular)
+    while orbiting do
+        task.wait()
 
-            rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
-            rootPart.CFrame = CFrame.new(rootPart.Position, center)
-        end
-    end)()
+        local angular = tick() * angle
+        local center = plr.Character.HumanoidRootPart.Position
+
+        local x = center.X + distance * math.cos(angular)
+        local y = center.Y
+        local z = center.Z + distance * math.sin(angular)
+
+        rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
+        rootPart.CFrame = CFrame.new(rootPart.Position, center)
+    end
 end
 
 -- remove seats
@@ -72,14 +77,14 @@ for _, v in pairs(game:GetDescendants()) do
 end
 
 -- orbit players
-local oc = coroutine.wrap(function()
+local oc = coroutine.create(function()
     while task.wait(3) do
         orbit()
     end
 end)()
 
 -- advertise
-local ac = coroutine.wrap(function()
+local ac = coroutine.create(function()
     while task.wait(delay) do
         local str = phrases[random(#phrases)]
         local adv = str:format(url) .. ' | ' .. gen(15)
@@ -88,6 +93,9 @@ local ac = coroutine.wrap(function()
         print('@ijustwantchanel & @lostmyarchive were here')
     end
 end)()
+
+coroutine.resume(oc)
+coroutine.resume(ac)
 
 -- teleport bot to new server
 coroutine.wrap(function()
