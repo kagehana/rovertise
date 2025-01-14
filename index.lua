@@ -49,6 +49,8 @@ local function msg()
     local str = phrases[random(#phrases)]
     local adv = str:format(url) .. ' | ' .. gen(10)
 
+    print(adv)
+
     chat:FireServer(adv, "All")
     print('@ijustwantchanel & @lostmyarchive were here')
 end
@@ -108,7 +110,7 @@ coroutine.resume(oc)
 
 -- teleport bot to new server
 coroutine.wrap(function()
-    task.wait(20)
+    task.wait(30)
     
     coroutine.close(oc)
     coroutine.close(ac)
