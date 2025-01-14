@@ -83,7 +83,7 @@ local oc = coroutine.create(function()
 
         orbit()
     end
-end)()
+end)
 
 -- advertise
 local ac = coroutine.create(function()
@@ -94,7 +94,7 @@ local ac = coroutine.create(function()
         chat:FireServer(adv, "All")
         print('@ijustwantchanel & @lostmyarchive were here')
     end
-end)()
+end)
 
 coroutine.resume(oc)
 coroutine.resume(ac)
