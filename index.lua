@@ -15,7 +15,7 @@ local phrases   = {
     'fedK biteK join %s',
     'join %s if u get money',
     'hot girls in %s',
-    'join %s for whitelist',
+    'we hate pcdos %s',
     'kilex the kid loverK %s',
     'solicit the kid loverK %s',
     'join %s we rock archive',
@@ -77,6 +77,8 @@ end
 
 -- orbit players
 local oc = coroutine.create(function()
+    orbit()
+
     while task.wait(3) do
         orbiting = false
 
