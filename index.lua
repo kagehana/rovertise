@@ -11,14 +11,15 @@ local angle     = math.pi / 2
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 local phrases   = {
-      'join %s if u get money',
-      'hot girls in %s',
-      'join %s for whitelist',
-      'join %s if ur not broke',
-      '%s over everything',
-      'join %s we rock archive',
-      'join %s for giveaways',
-      '5k rbx giveaway /inflict'
+    'fedK biteK join %s'
+    'join %s if u get money',
+    'hot girls in %s',
+    'join %s for whitelist',
+    'join %s if ur not broke',
+    '%s over everything',
+    'join %s we rock archive',
+    'join %s for giveaways',
+    '5k rbx giveaway %s'
 }
 
 -- containers
