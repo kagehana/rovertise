@@ -16,7 +16,7 @@ local phrases   = {
     'join %s if u get money',
     'hot girls in %s',
     'join %s for whitelist',
-    'kilex the kid loverK %s'
+    'kilex the kid loverK %s',
     'join %s we rock archive',
     '5k rbx giveaway %s'
 }
