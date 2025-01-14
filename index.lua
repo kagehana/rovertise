@@ -47,8 +47,6 @@ function gen(len)
 end
 
 local function orbit()
-    orbiting = false
-
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
 
@@ -79,6 +77,8 @@ end
 -- orbit players
 local oc = coroutine.create(function()
     while task.wait(3) do
+        orbiting = false
+        
         orbit()
     end
 end)()
