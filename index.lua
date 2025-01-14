@@ -1,5 +1,5 @@
 -- variables
-local delay     = 1.2
+local delay     = 2.3
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -17,6 +17,7 @@ local phrases   = {
     'hot girls in %s',
     'join %s for whitelist',
     'kilex the kid loverK %s',
+    'solicit the kid loverK %s',
     'join %s we rock archive',
     '5k rbx giveaway %s'
 }
