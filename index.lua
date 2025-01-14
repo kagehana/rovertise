@@ -1,5 +1,5 @@
 -- variables
-local delay     = 2
+local delay     = 1.5
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
