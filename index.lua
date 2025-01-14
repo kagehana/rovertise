@@ -1,6 +1,6 @@
 -- variables
-local delay     = 3.6
-local distance  = 2
+local delay     = 2.6
+local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
 local character = localp.Character or localp.CharacterAdded:Wait()
@@ -8,7 +8,7 @@ local humanoid  = character:WaitForChild("Humanoid")
 local rootPart  = character:WaitForChild("HumanoidRootPart")
 local center    = rootPart.Position
 local angle     = math.pi / 2
-local url       = '/inflict' -- edit this part
+local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 local phrases   = {
       'join %s if u get money',
