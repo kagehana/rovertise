@@ -12,16 +12,16 @@ local orbiting  = false
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
-    'kid loversK join %s',
     'join %s if u get money',
-    'hot girls in %s',
+    'hot people in %s',
     'we hate kid lovers %s',
-    'kilex the kid loverK %s',
+    'kilex is a swatted, kid loving loser %s',
     'join %s we rock archive',
     '5k giveaway %s'
 }
 
 -- containers
+local HttpService = game:getService('HttpService')
 local chat = game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
 
 -- shortcuts
@@ -114,8 +114,10 @@ coroutine.wrap(function()
     coroutine.close(oc)
     coroutine.close(ac)
 
-    task.wait(1.5)
+    task.wait(0.3)
 
-    print('TELEPORTING\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG')
-    game:GetService('TeleportService'):Teleport(417267366)
+    local jobs = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
+    local job = jobs.data[math.random(#jobs.data)]
+
+    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, localp)
 end)()
