@@ -1,5 +1,5 @@
 -- variables
-local delay     = 2.6
+local delay     = 2
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -64,17 +64,17 @@ end
 
 -- process
 coroutine.wrap(function()
+    while task.wait(1) do
+        orbit()
+    end
+end)()
+
+coroutine.wrap(function()
     while task.wait(delay) do
         local str = phrases[random(#phrases)]
         local adv = str:format(url) .. ' | ' .. gen(15)
 
         chat:FireServer(adv, "All")
         print('@ijustwantchanel & @lostmyarchive were here')
-    end
-end)()
-
-coroutine.wrap(function()
-    while task.wait(1) do
-        orbit()
     end
 end)()
