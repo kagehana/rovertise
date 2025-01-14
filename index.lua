@@ -65,7 +65,7 @@ end
 
 -- process
 coroutine.wrap(function()
-    while task.wait(1) do
+    while task.wait(3) do
         orbit()
     end
 end)()
