@@ -75,16 +75,16 @@ for _, v in pairs(game:GetDescendants()) do
 end
 
 -- orbit players
-local oc = coroutine.wrap(function()
+local oc = coroutine.create(function()
     while task.wait(3) do
         orbiting = false
 
         orbit()
     end
-end)()
+end)
 
 -- advertise
-local ac = coroutine.wrap(function()
+local ac = coroutine.create(function()
     while task.wait(delay) do
         local str = phrases[random(#phrases)]
         local adv = str:format(url) .. ' | ' .. gen(15)
@@ -92,7 +92,10 @@ local ac = coroutine.wrap(function()
         chat:FireServer(adv, "All")
         print('@ijustwantchanel & @lostmyarchive were here')
     end
-end)()
+end)
+
+coroutine.resume(ac)
+coroutine.resume(oc)
 
 -- teleport bot to new server
 coroutine.wrap(function()
