@@ -1,5 +1,5 @@
 -- variables
-local delay     = 2.3
+local delay     = 2.2
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -12,12 +12,11 @@ local orbiting  = false
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
-    'fedK biteK join %s',
+    'kid loversK join %s',
     'join %s if u get money',
     'hot girls in %s',
     'we hate kid lovers %s',
     'kilex the kid loverK %s',
-    'solicit the kid loverK %s',
     'join %s we rock archive',
     '5k giveaway %s'
 }
@@ -110,7 +109,7 @@ coroutine.resume(oc)
 
 -- teleport bot to new server
 coroutine.wrap(function()
-    task.wait(30)
+    task.wait(35)
     
     coroutine.close(oc)
     coroutine.close(ac)
