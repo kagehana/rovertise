@@ -1,5 +1,5 @@
 -- variables
-local delay     = 2.2
+local delay     = 1.5
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -99,12 +99,12 @@ coroutine.resume(oc)
 
 -- teleport bot to new server
 coroutine.wrap(function()
-    task.wait(10)
+    task.wait(60)
     
     coroutine.close(oc)
     coroutine.close(ac)
 
-    task.wait(1.5)
+    task.wait(0.8)
 
     print('TELEPORTING\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG')
     game:GetService('TeleportService'):Teleport(417267366)
