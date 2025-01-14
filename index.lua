@@ -64,6 +64,12 @@ local function orbit()
 end
 
 -- process
+for _, v in pairs(game:GetDescendants()) do
+    if v:IsA('Seat') then
+        v:Destroy()
+    end
+end
+
 coroutine.wrap(function()
     while task.wait(3) do
         orbit()
