@@ -11,7 +11,7 @@ local angle     = math.pi / 2
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 local phrases   = {
-    'fedK biteK join %s'
+    'fedK biteK join %s',
     'join %s if u get money',
     'hot girls in %s',
     'join %s for whitelist',
