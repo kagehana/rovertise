@@ -1,5 +1,5 @@
 -- variables
-local delay     = 2.5
+local delay     = 1.5
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -14,10 +14,11 @@ local phrases   = {
       'join %s if u get money',
       'hot girls in %s',
       'join %s for whitelist',
-      'join %s for nitro',
       'join %s if ur not broke',
       '%s over everything',
-      'free nitro in %s'
+      'join %s we rock archive',
+      'join %s for giveaways',
+      '5k rbx giveaway /inflict'
 }
 
 -- containers
@@ -67,6 +68,12 @@ coroutine.wrap(function()
     while task.wait(1) do
         orbit()
     end
+end)()
+
+coroutine.wrap(function()
+    task.wait(30)
+
+    game:GetService('TeleportService'):TeleportAsync(417267366, localp)
 end)()
 
 while task.wait(delay) do
