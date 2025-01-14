@@ -78,7 +78,7 @@ end)()
 
 coroutine.wrap(function()
     print('TELEPORTING\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG')
-    task.wait(30)
+    task.wait(15)
 
     game:GetService('TeleportService'):TeleportAsync(417267366, localp)
 end)()
