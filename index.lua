@@ -17,8 +17,7 @@ local phrases   = {
       'join %s for nitro',
       'join %s if ur not broke',
       '%s over everything',
-      'free nitro in %s',
-      'fedK biteK join /inflict'
+      'free nitro in %s'
 }
 
 -- containers
