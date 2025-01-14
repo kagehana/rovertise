@@ -52,19 +52,21 @@ local function orbit()
 
     orbiting = true
 
-    while orbiting do
-        task.wait()
+    coroutine.wrap(function()
+        while orbiting do
+            task.wait()
 
-        local angular = tick() * angle
-        local center = plr.Character.HumanoidRootPart.Position
+            local angular = tick() * angle
+            local center = plr.Character.HumanoidRootPart.Position
 
-        local x = center.X + distance * math.cos(angular)
-        local y = center.Y
-        local z = center.Z + distance * math.sin(angular)
+            local x = center.X + distance * math.cos(angular)
+            local y = center.Y
+            local z = center.Z + distance * math.sin(angular)
 
-        rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
-        rootPart.CFrame = CFrame.new(rootPart.Position, center)
-    end
+            rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
+            rootPart.CFrame = CFrame.new(rootPart.Position, center)
+        end
+    end)()
 end
 
 -- remove seats
@@ -78,7 +80,7 @@ end
 local oc = coroutine.create(function()
     while task.wait(3) do
         orbiting = false
-        
+
         orbit()
     end
 end)()
