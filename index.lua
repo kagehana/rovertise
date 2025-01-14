@@ -1,5 +1,5 @@
 -- variables
-local delay     = 1.5
+local delay     = 2.2
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -52,21 +52,18 @@ local function orbit()
 
     orbiting = true
 
-    coroutine.wrap(function()
-        while orbiting do
-            task.wait()
+    while orbiting do
+        task.wait
+        local angular = tick() * angle
+        local center = plr.Character.HumanoidRootPart.Position
 
-            local angular = tick() * angle
-            local center = plr.Character.HumanoidRootPart.Position
+        local x = center.X + distance * math.cos(angular)
+        local y = center.Y
+        local z = center.Z + distance * math.sin(angular)
 
-            local x = center.X + distance * math.cos(angular)
-            local y = center.Y
-            local z = center.Z + distance * math.sin(angular)
-
-            rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
-            rootPart.CFrame = CFrame.new(rootPart.Position, center)
-        end
-    end)()
+        rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
+        rootPart.CFrame = CFrame.new(rootPart.Position, center)
+    end
 end
 
 -- remove seats
@@ -77,7 +74,7 @@ for _, v in pairs(game:GetDescendants()) do
 end
 
 -- orbit players
-coroutine.wrap(function()
+local oc = coroutine.wrap(function()
     while task.wait(3) do
         orbiting = false
 
@@ -86,7 +83,7 @@ coroutine.wrap(function()
 end)()
 
 -- advertise
-coroutine.create(function()
+local ac = coroutine.wrap(function()
     while task.wait(delay) do
         local str = phrases[random(#phrases)]
         local adv = str:format(url) .. ' | ' .. gen(15)
@@ -96,12 +93,14 @@ coroutine.create(function()
     end
 end)()
 
-coroutine.resume(oc)
-coroutine.resume(ac)
-
 -- teleport bot to new server
 coroutine.wrap(function()
     task.wait(10)
+    
+    coroutine.close(oc)
+    coroutine.close(ac)
+
+    task.wait(1.5)
 
     print('TELEPORTING\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG')
     game:GetService('TeleportService'):Teleport(417267366)
