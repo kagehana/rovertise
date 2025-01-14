@@ -53,7 +53,8 @@ local function orbit()
     orbiting = true
 
     while orbiting do
-        task.wait
+        task.wait()
+		
         local angular = tick() * angle
         local center = plr.Character.HumanoidRootPart.Position
 
