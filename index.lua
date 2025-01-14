@@ -1,5 +1,5 @@
 -- variables
-local delay     = 1.5
+local delay     = 2.2
 local distance  = 1
 local pservice  = game:GetService('Players')
 local localp    = pservice.LocalPlayer
@@ -52,19 +52,21 @@ local function orbit()
 
     orbiting = true
 
-    while orbiting do
-        task.wait()
-		
-        local angular = tick() * angle
-        local center = plr.Character.HumanoidRootPart.Position
+    coroutine.wrap(function()
+		while orbiting do
+			task.wait()
+			
+			local angular = tick() * angle
+			local center = plr.Character.HumanoidRootPart.Position
 
-        local x = center.X + distance * math.cos(angular)
-        local y = center.Y
-        local z = center.Z + distance * math.sin(angular)
+			local x = center.X + distance * math.cos(angular)
+			local y = center.Y
+			local z = center.Z + distance * math.sin(angular)
 
-        rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
-        rootPart.CFrame = CFrame.new(rootPart.Position, center)
-    end
+			rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
+			rootPart.CFrame = CFrame.new(rootPart.Position, center)
+		end
+	end)()
 end
 
 -- remove seats
@@ -104,7 +106,7 @@ coroutine.wrap(function()
     coroutine.close(oc)
     coroutine.close(ac)
 
-    task.wait(0.8)
+    task.wait(1.5)
 
     print('TELEPORTING\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG\nG')
     game:GetService('TeleportService'):Teleport(417267366)
