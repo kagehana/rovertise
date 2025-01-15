@@ -1,3 +1,11 @@
+-- @ijustwantchanel
+-- @lostmyarchive
+-- gg/inflict
+
+
+
+
+
 while not game:IsLoaded() do
     task.wait()
 end
