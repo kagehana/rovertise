@@ -4,8 +4,8 @@ end
 
 ------------------
 --[[ services ]]--
-------------------
-local players    = game:GetService('PlayerService')
+-----------------
+local players    = game:GetService('Players')
 local http       = game:GetService('HttpService')
 local replicated = game:GetService('ReplicatedStorage')
 
@@ -76,7 +76,6 @@ end
 local client    = players.LocalPlayer
 local delay     = 2.2
 local distance  = 1
-local pservice  = game:GetService('Players')
 local angle     = math.pi / 2
 local orbiting  = false
 local character = client.Character or client.CharacterAdded:Wait()
@@ -93,7 +92,7 @@ local function orbit()
 		while orbiting do
 			task.wait()
 			
-			local angular = tick() * 6
+			local angular = tick() * 13
 			local center = plr.Character.HumanoidRootPart.Position
 
 			local x = center.X + distance * math.cos(angular)
