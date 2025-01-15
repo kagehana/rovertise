@@ -1,14 +1,33 @@
--- variables
-local delay     = 2.2
-local distance  = 1
-local pservice  = game:GetService('Players')
-local localp    = pservice.LocalPlayer
-local character = localp.Character or localp.CharacterAdded:Wait()
-local humanoid  = character:WaitForChild("Humanoid")
-local rootPart  = character:WaitForChild("HumanoidRootPart")
-local center    = rootPart.Position
-local angle     = math.pi / 2
-local orbiting  = false
+while not game:IsLoaded() do
+    task.wait()
+end
+
+------------------
+--[[ services ]]--
+------------------
+local players    = game:GetService('PlayerService')
+local http       = game:GetService('HttpService')
+local replicated = game:GetService('ReplicatedStorage')
+
+
+
+-------------------
+--[[ shortcuts ]]--
+-------------------
+local concat = table.concat
+local insert = table.insert
+local random = math.random
+
+
+
+-------------------
+--[[ utilities ]]--
+-------------------
+
+-- gen(len: int)
+----------------------------
+-- generates a random string
+
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
@@ -20,16 +39,6 @@ local phrases   = {
     '5k giveaway %s'
 }
 
--- containers
-local HttpService = game:getService('HttpService')
-local chat = game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
-
--- shortcuts
-local concat = table.concat
-local insert = table.insert
-local random = math.random
-
--- functions
 function gen(len)
     math.randomseed(os.time())
 
@@ -44,15 +53,35 @@ function gen(len)
     return concat(res)
 end
 
+
+-- msg()
+----------------------
+-- fires a msg in-game
+
+local chat = replicated.DefaultChatSystemChatEvents.SayMessageRequest
+
 local function msg()
     local str = phrases[random(#phrases)]
     local adv = str:format(url) .. ' | ' .. gen(10)
 
-    print(adv)
-
     chat:FireServer(adv, "All")
     print('@ijustwantchanel & @lostmyarchive were here')
 end
+
+
+-- orbit()
+---------------------------------
+-- orbits a random player in-game
+
+local client    = players.LocalPlayer
+local delay     = 2.2
+local distance  = 1
+local pservice  = game:GetService('Players')
+local angle     = math.pi / 2
+local orbiting  = false
+local character = client.Character or client.CharacterAdded:Wait()
+local humanoid  = character:WaitForChild("Humanoid")
+local rootPart  = character:WaitForChild("HumanoidRootPart")
 
 local function orbit()
     local plrs = game:GetService('Players'):GetPlayers()
@@ -64,7 +93,7 @@ local function orbit()
 		while orbiting do
 			task.wait()
 			
-			local angular = tick() * 1
+			local angular = tick() * 6
 			local center = plr.Character.HumanoidRootPart.Position
 
 			local x = center.X + distance * math.cos(angular)
@@ -77,15 +106,21 @@ local function orbit()
 	end)()
 end
 
--- remove seats
+
+
+-------------------
+--[[ processes ]]--
+-------------------
+
+-- destroy seats
 for _, v in pairs(game:GetDescendants()) do
     if v:IsA('Seat') then
         v:Destroy()
     end
 end
 
--- orbit players
-local oc = coroutine.create(function()
+-- create orbiting thread
+local othread = coroutine.create(function()
     orbit()
 
     while task.wait(3) do
@@ -95,8 +130,8 @@ local oc = coroutine.create(function()
     end
 end)
 
--- advertise
-local ac = coroutine.create(function()
+-- create advertisement thread
+local athread = coroutine.create(function()
     msg()
 
     while task.wait(delay) do
@@ -104,10 +139,11 @@ local ac = coroutine.create(function()
     end
 end)
 
-coroutine.resume(ac)
-coroutine.resume(oc)
+-- start coroutines
+coroutine.resume(othread)
+coroutine.resume(athread)
 
--- teleport bot to new server
+-- thread for joining new server
 coroutine.wrap(function()
     task.wait(35)
     
