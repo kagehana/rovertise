@@ -169,7 +169,20 @@ coroutine.wrap(function()
             ['Content-Type'] = 'application/json'
         },
         Body    = http:JSONEncode({
-            ['content'] = 'joining ' .. job.id
+            ['embeds'] = {{
+                ['description'] = 'Joining a new server.',
+                ['fields']      = {{
+                    ['name']   = 'Client',
+                    ['value']  = ('> Username: `%s`\n> Identifier: `%d`'):format(client.Name, client.UserId),
+                    ['inline'] = true
+                }, {
+                    ['name']   = 'Server',
+                    ['value']  = ('> Identifier: `%s`\n> Players: `%d`\n> Ping: `%d`'):format(job.id, job.playing, job.ping),
+                    ['inline'] = true
+                }},
+                ['timestamp']   = os.date("!%Y-%m-%dT%TZ")
+                ['footer']      = job.id
+            }}
         })
     })
 
