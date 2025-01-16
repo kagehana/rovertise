@@ -213,13 +213,5 @@ end)()
 coroutine.wrap(function()
     task.wait((#players:GetPlayers() * 2.2) + 1)
 
-    local jobs = http:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
-    local job = jobs.data[math.random(#jobs.data)]
-
-    while job.playing > 33 or job.playing == 2 do
-        job = jobs.data[math.random(#jobs.data)]
-    end
-
-    queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
-    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, localp)
+    transport()
 end)()
