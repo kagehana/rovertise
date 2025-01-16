@@ -85,8 +85,7 @@ local phrases   = {
     'hot people join %s',
     '3k giveaway %s',
     'hey you! yeah, you! join %s',
-    'join %s for friends!',
-    'we want you in %s, %s!'
+    'join %s for friends!'
 }
 
 function gen(len)
