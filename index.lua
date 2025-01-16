@@ -10,6 +10,8 @@ while not game:IsLoaded() do
     task.wait()
 end
 
+task.wait(2.5)
+
 
 ------------------
 --[[ services ]]--
@@ -140,7 +142,7 @@ coroutine.wrap(function()
 end)()
 
 -- create advertisement thread
-coroutine.create(function()
+coroutine.wrap(function()
     msg()
 
     while task.wait(delay) do
@@ -150,9 +152,9 @@ end)()
 
 -- thread for joining new server
 coroutine.wrap(function()
-    task.wait(35)
+    task.wait(30)
 
-    local jobs = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
+    local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
 
     queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
