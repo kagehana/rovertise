@@ -186,6 +186,7 @@ local function transport()
     
     local success, _ = pcall(function() game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, client) end)
     
+    print(job.id == game.JobId)
     while (not success) or job.id == game.JobId do
         job = jobs.data[math.random(#jobs.data)]
         
