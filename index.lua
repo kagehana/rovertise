@@ -108,6 +108,8 @@ local function orbit()
     orbiting = true
 
     coroutine.wrap(function()
+        task.wait(0.1)
+        
 		while orbiting do
 			task.wait()
 			
