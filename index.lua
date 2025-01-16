@@ -87,7 +87,8 @@ local phrases   = {
     '3k giveaway %s',
     'hey you! yeah, you! join %s',
     'join %s for friends!',
-    'join %s we rock designer'
+    'join %s we rock designer',
+    'hi, we want you in %s %s!'
 }
 
 function gen(len)
@@ -111,9 +112,13 @@ end
 
 local chat = replicated.DefaultChatSystemChatEvents.SayMessageRequest
 
-local function msg()
+local function msg(targ)
     local str = phrases[random(#phrases)]
     local adv = str:format(url) .. ' | ' .. gen(10)
+
+    if adv:find('%%s') then
+        adv = adv:format(targ.Name)
+    end
 
     chat:FireServer(adv, "All")
 end
@@ -148,7 +153,7 @@ local function orbit()
     coroutine.wrap(function()
         task.wait(0.15)
 
-        msg()
+        msg(targ)
 
 		while orbiting do
 			task.wait()
@@ -188,8 +193,6 @@ local function transport()
     
     local success = pcall(function() teleport(job.id) end)
 
-    print(not success, job.id, game.JobId)
-    
     while (not success) or job.id == game.JobId do
         
         job = jobs.data[math.random(#jobs.data)]
