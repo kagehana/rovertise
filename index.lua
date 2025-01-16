@@ -86,7 +86,7 @@ local phrases   = {
     'hot people join %s',
     '3k giveaway %s',
     'hey you! yeah, you! join %s',
-    'join %s for friends!'.
+    'join %s for friends!',
     'join %s we rock designer'
 }
 
