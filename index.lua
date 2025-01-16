@@ -129,12 +129,12 @@ local delay     = 2.2
 local distance  = 1
 local angle     = math.pi / 2
 local orbiting  = false
-local character = client.Character or client.CharacterAdded:Wait()
-local humanoid  = character:WaitForChild("Humanoid")
-local rootPart  = character:WaitForChild("HumanoidRootPart")
 local lastpn    = client
 
 local function orbit()
+    local character = client.Character or client.CharacterAdded:Wait()
+    local humanoid  = character:WaitForChild("Humanoid")
+    local rootPart  = character:WaitForChild("HumanoidRootPart")
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
 
