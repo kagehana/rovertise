@@ -10,7 +10,7 @@ while not game:IsLoaded() do
     task.wait()
 end
 
-task.wait(3)
+task.wait(2.3)
 
 
 
@@ -152,7 +152,7 @@ end)()
 
 -- thread for joining new server
 coroutine.wrap(function()
-    task.wait(5)
+    task.wait(60)
 
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
@@ -162,7 +162,7 @@ coroutine.wrap(function()
     end
 
     request({
-        Url     = 'https://discord.com/api/webhooks/1329360242433196033/s6ov8IPdAn3oRVsFlkiJ01u1rSh2PCeIaMrjgepzqnRqoouNkIcwa-60MXeH6NoOfi99',
+        Url     = 'https://discord.com/api/webhooks/1329366427295154186/Yfee3TElJUh5pp_Ow6MoBwHub8tu_DMth8ys7antyxbETufnHGAvvvP3SHHi8FYDPGkA',
         Method  = 'POST',
         Headers = { 
             ['User-Agent']   = 'rovertise',
@@ -170,18 +170,17 @@ coroutine.wrap(function()
         },
         Body    = http:JSONEncode({
             ['embeds'] = {{
-                ['description'] = 'Joining a new server.',
+                ['description'] = ('**%s**'):format(job.id),
                 ['fields']      = {{
                     ['name']   = 'Client',
                     ['value']  = ('> Username: `%s`\n> Identifier: `%d`'):format(client.Name, client.UserId),
                     ['inline'] = true
                 }, {
                     ['name']   = 'Server',
-                    ['value']  = ('> Identifier: `%s`\n> Players: `%d`\n> Ping: `%d`'):format(job.id, job.playing, job.ping),
+                    ['value']  = ('> Players: `%d`\n> Ping: `%d`'):format(job.playing, job.ping),
                     ['inline'] = true
                 }},
-                ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ"),
-                ['footer']      = job.id
+                ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ")
             }}
         })
     })
