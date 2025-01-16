@@ -5,12 +5,21 @@
 
 
 
-
+-- wait until game is loaded
 while not game:IsLoaded() do
     task.wait()
 end
 
+-- wait a bit more as a failsafe
 task.wait(1.5)
+
+-- delete all seats to prevent disruption
+for _, v in pairs(game:GetDescendants()) do
+    if v:IsA('Seat') then
+        v:Destroy()
+    end
+end
+
 
 ------------------
 --[[ services ]]--
@@ -18,6 +27,7 @@ task.wait(1.5)
 local players    = game:GetService('Players')
 local http       = game:GetService('HttpService')
 local replicated = game:GetService('ReplicatedStorage')
+
 
 
 -----------------
@@ -187,16 +197,10 @@ local function transport()
 end
 
 
+
 -------------------
 --[[ processes ]]--
 -------------------
-
--- destroy seats
-for _, v in pairs(game:GetDescendants()) do
-    if v:IsA('Seat') then
-        v:Destroy()
-    end
-end
 
 -- create orbiting thread
 coroutine.wrap(function()
