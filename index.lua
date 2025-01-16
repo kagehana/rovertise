@@ -109,7 +109,7 @@ local function orbit()
     lastp = plr
 
     coroutine.wrap(function()
-        task.wait(0.1)
+        task.wait(0.15)
 
 		while orbiting do
 			task.wait()
@@ -143,7 +143,7 @@ end
 coroutine.wrap(function()
     orbit()
 
-    while task.wait(delay) do
+    while task.wait(delay - 0.2) do
         orbiting = false
 
         orbit()
