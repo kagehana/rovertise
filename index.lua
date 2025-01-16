@@ -156,8 +156,8 @@ coroutine.resume(athread)
 coroutine.wrap(function()
     task.wait(35)
     
-    coroutine.close(oc)
-    coroutine.close(ac)
+    coroutine.close(othread)
+    coroutine.close(athread)
 
     task.wait(0.3)
 
