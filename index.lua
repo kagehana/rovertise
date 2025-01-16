@@ -153,7 +153,7 @@ end)()
 
 -- thread for joining new server
 coroutine.wrap(function()
-    task.wait(30)
+    task.wait(60)
 
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
