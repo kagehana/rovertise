@@ -94,11 +94,12 @@ local orbiting  = false
 local character = client.Character or client.CharacterAdded:Wait()
 local humanoid  = character:WaitForChild("Humanoid")
 local rootPart  = character:WaitForChild("HumanoidRootPart")
+local plist     = game:GetService('Players'):GetPlayers()
+local pindex    = 1
 
 local function orbit()
-    local plrs = game:GetService('Players'):GetPlayers()
-    local plr  = plrs[math.random(#plrs)]
-
+    local plr = plist[pindex]
+    
     orbiting = true
 
     coroutine.wrap(function()
@@ -115,6 +116,8 @@ local function orbit()
 			rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
 			rootPart.CFrame = CFrame.new(rootPart.Position, center)
 		end
+
+        pindex = pindex + 1
 	end)()
 end
 
@@ -152,7 +155,7 @@ end)()
 
 -- thread for joining new server
 coroutine.wrap(function()
-    task.wait((#players:GetPlayers() * 2.2) + 1)
+    task.wait((#plist * 2.2) + 1)
 
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
