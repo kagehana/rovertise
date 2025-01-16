@@ -81,7 +81,7 @@ local random = math.random
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
-    '3k giveaway in %s',
+    '3k giveaway %s',
     'join %s if u get money',
     'hey you! join %s',
     'join %s'
