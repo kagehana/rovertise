@@ -10,7 +10,7 @@ while not game:IsLoaded() do
     task.wait()
 end
 
-task.wait(2.3)
+task.wait(1.5)
 
 ------------------
 --[[ services ]]--
