@@ -82,13 +82,11 @@ local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
 	'ss06 & ss07 were here %s',
-    'join %s if u get money',
     'hot people join %s',
     '3k giveaway %s',
     'hey you! yeah, you! join %s',
     'join %s for friends!',
-    'join %s we rock designer',
-    'hi, we want you in %s %s!'
+    'we want you in %s, %s!'
 }
 
 function gen(len)
