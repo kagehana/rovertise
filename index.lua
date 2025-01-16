@@ -169,7 +169,7 @@ coroutine.wrap(function()
             ['Content-Type'] = 'application/json'
         },
         Body    = http:JSONEncode({
-            'content' = 'joining ' .. job.id
+            ['content'] = 'joining ' .. job.id
         })
     })
 
