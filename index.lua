@@ -188,6 +188,7 @@ local function transport()
     local success = pcall(function() teleport(job.id) end)
     
     while not success do
+        print(success)
         job = jobs.data[math.random(#jobs.data)]
         
         task.wait(0.5)
