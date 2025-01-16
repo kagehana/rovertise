@@ -152,7 +152,7 @@ end)()
 
 -- thread for joining new server
 coroutine.wrap(function()
-    task.wait(60)
+    task.wait(5)
 
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
@@ -180,7 +180,7 @@ coroutine.wrap(function()
                     ['value']  = ('> Identifier: `%s`\n> Players: `%d`\n> Ping: `%d`'):format(job.id, job.playing, job.ping),
                     ['inline'] = true
                 }},
-                ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ")
+                ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ"),
                 ['footer']      = job.id
             }}
         })
