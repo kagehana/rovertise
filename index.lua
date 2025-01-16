@@ -102,6 +102,7 @@ local function orbit()
 
     while (plr.Name == lastp.Name) or (plr.Name == client.Name) do
         plr = plrs[math.random(#plrs)]
+        print(lastp.Name, plr.Name_)
     end
 
     orbiting = true
