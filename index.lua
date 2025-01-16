@@ -161,7 +161,7 @@ end)()
 coroutine.wrap(function()
     task.wait((#players:GetPlayers() * 2.2) + 1)
 
-    local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
+    local jobs = http:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
     local job = jobs.data[math.random(#jobs.data)]
 
     while job.playing > 33 or job.playing == 2 do
