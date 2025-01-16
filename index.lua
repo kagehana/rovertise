@@ -104,12 +104,14 @@ local function orbit()
     while (plr.Name == lastpn) or (plr.Name == client.Name) do
         plr = plrs[math.random(#plrs)]
     end
-
+    
+    lastpn   = plr.Name
     orbiting = true
-    lastpn = plr.Name
 
     coroutine.wrap(function()
         task.wait(0.15)
+
+        msg()
 
 		while orbiting do
 			task.wait()
@@ -147,15 +149,6 @@ coroutine.wrap(function()
         orbiting = false
 
         orbit()
-    end
-end)()
-
--- create advertisement thread
-coroutine.wrap(function()
-    msg()
-
-    while task.wait(delay) do
-        msg()
     end
 end)()
 
