@@ -129,7 +129,7 @@ for _, v in pairs(game:GetDescendants()) do
 end
 
 -- create orbiting thread
-local othread = coroutine.create(function()
+coroutine.wrap(function()
     orbit()
 
     while task.wait(3) do
@@ -137,29 +137,20 @@ local othread = coroutine.create(function()
 
         orbit()
     end
-end)
+end)()
 
 -- create advertisement thread
-local athread = coroutine.create(function()
+coroutine.create(function()
     msg()
 
     while task.wait(delay) do
         msg()
     end
-end)
-
--- start coroutines
-coroutine.resume(othread)
-coroutine.resume(athread)
+end)()
 
 -- thread for joining new server
 coroutine.wrap(function()
     task.wait(35)
-    
-    coroutine.close(othread)
-    coroutine.close(athread)
-
-    task.wait(0.3)
 
     local jobs = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
