@@ -115,7 +115,7 @@ local function msg(targ)
     local adv = str:format(url) .. ' | ' .. gen(10)
 
     if adv:find('%%s') then
-        adv = adv:format(targ.Name)
+        adv = adv:format(targ.DisplayName)
     end
 
     chat:FireServer(adv, "All")
