@@ -94,13 +94,13 @@ local orbiting  = false
 local character = client.Character or client.CharacterAdded:Wait()
 local humanoid  = character:WaitForChild("Humanoid")
 local rootPart  = character:WaitForChild("HumanoidRootPart")
-local lastp 
+local lastp     = client
 
 local function orbit()
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
 
-    while plr.Name == lastp.Name do
+    while (plr.Name == lastp.Name) or (plr.Name == client.Name) do
         plr = plrs[math.random(#plrs)]
     end
 
