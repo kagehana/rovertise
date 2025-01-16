@@ -185,16 +185,14 @@ local function transport()
 
     queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
     
-    local success, _ = pcall(function() teleport(job.id) end)
+    local success, _ = pcall(function() game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, client) end)
     
-    print(success, _)
     while (not success) or job.id == game.JobId do
-        print(success, _)
         job = jobs.data[math.random(#jobs.data)]
         
         task.wait(0.5)
 
-        success = pcall(function() teleport(job.id) end)
+        success = pcall(function() game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, client) end)
     end
 end
 
