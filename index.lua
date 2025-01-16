@@ -180,7 +180,7 @@ coroutine.wrap(function()
                     ['value']  = ('> Identifier: `%s`\n> Players: `%d`\n> Ping: `%d`'):format(job.id, job.playing, job.ping),
                     ['inline'] = true
                 }},
-                ['timestamp']   = os.date("!%Y-%m-%dT%TZ"),
+                ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ")
                 ['footer']      = job.id
             }}
         })
