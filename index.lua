@@ -81,10 +81,12 @@ local random = math.random
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
-    '3k giveaway %s',
+	'ss06 & ss07 were here %s',
     'join %s if u get money',
-    'hey you! join %s',
-    'join %s'
+    'hot people join %s',
+    '3k giveaway %s',
+    'hey you! yeah, you! join %s',
+    'join %s for friends!'
 }
 
 function gen(len)
@@ -110,7 +112,7 @@ local chat = replicated.DefaultChatSystemChatEvents.SayMessageRequest
 
 local function msg()
     local str = phrases[random(#phrases)]
-    local adv = str:format(url) .. ' | ss06 & ss07 | ' .. gen(10)
+    local adv = str:format(url) .. ' | ' .. gen(10)
 
     chat:FireServer(adv, "All")
 end
