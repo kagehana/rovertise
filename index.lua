@@ -106,10 +106,11 @@ local function orbit()
     end
 
     orbiting = true
+    lastp = plr
 
     coroutine.wrap(function()
         task.wait(0.1)
-        
+
 		while orbiting do
 			task.wait()
 			
@@ -123,8 +124,6 @@ local function orbit()
 			rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
 			rootPart.CFrame = CFrame.new(rootPart.Position, center)
 		end
-
-        lastp = plr
 	end)()
 end
 
