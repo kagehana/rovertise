@@ -126,7 +126,7 @@ local function orbit()
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
 
-    print(lastp, plr.Name)
+    print(lastpn, plr.Name)
 
     while (plr.Name == lastpn) or (plr.Name == client.Name) do
         plr = plrs[math.random(#plrs)]
