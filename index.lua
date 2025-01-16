@@ -143,7 +143,7 @@ end
 coroutine.wrap(function()
     orbit()
 
-    while task.wait(delay - 0.2) do
+    while task.wait(delay) do
         orbiting = false
 
         orbit()
