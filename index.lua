@@ -78,7 +78,6 @@ local function msg()
     local adv = str:format(url) .. ' | ' .. gen(10)
 
     chat:FireServer(adv, "All")
-    print('@ijustwantchanel & @lostmyarchive were here')
 end
 
 
