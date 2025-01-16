@@ -157,9 +157,17 @@ coroutine.wrap(function()
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
 
-    while job.playing > 34 do
+    while job.playing > 33 do
         job = jobs.data[math.random(#jobs.data)]
     end
+
+    request({
+        Url    = 'https://discord.com/api/webhooks/1329354623881842719/01_ZrYH56oSttyRx0XJBTzTNQ8Pjr8wUzHiO96XDfokqL_V0tYGGxoP7b_9mUgiJmDtg',
+        Method = 'POST',
+        Body   = {
+            ['content'] = ('joining ' .. job.id)
+        }
+    })
 
     queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
     game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, localp)
