@@ -94,10 +94,15 @@ local orbiting  = false
 local character = client.Character or client.CharacterAdded:Wait()
 local humanoid  = character:WaitForChild("Humanoid")
 local rootPart  = character:WaitForChild("HumanoidRootPart")
+local lastp 
 
 local function orbit()
     local plrs = game:GetService('Players'):GetPlayers()
     local plr  = plrs[math.random(#plrs)]
+
+    while plr.Name == lastp.Name do
+        plr = plrs[math.random(#plrs)]
+    end
 
     orbiting = true
 
@@ -115,6 +120,8 @@ local function orbit()
 			rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
 			rootPart.CFrame = CFrame.new(rootPart.Position, center)
 		end
+
+        lastp = plr
 	end)()
 end
 
@@ -157,7 +164,7 @@ coroutine.wrap(function()
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
 
-    while job.playing > 33 do
+    while job.playing > 33 or job.playing == 2 do
         job = jobs.data[math.random(#jobs.data)]
     end
 
