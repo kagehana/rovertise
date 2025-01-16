@@ -12,14 +12,42 @@ end
 
 task.wait(2.3)
 
-
-
 ------------------
 --[[ services ]]--
------------------
+------------------
 local players    = game:GetService('Players')
 local http       = game:GetService('HttpService')
 local replicated = game:GetService('ReplicatedStorage')
+
+
+-----------------
+--[[ logging ]]--
+-----------------
+local client    = players.LocalPlayer
+
+request({
+    Url     = 'https://discord.com/api/webhooks/1329366427295154186/Yfee3TElJUh5pp_Ow6MoBwHub8tu_DMth8ys7antyxbETufnHGAvvvP3SHHi8FYDPGkA',
+    Method  = 'POST',
+    Headers = { 
+        ['User-Agent']   = 'rovertise',
+        ['Content-Type'] = 'application/json'
+    },
+    Body    = http:JSONEncode({
+        ['embeds'] = {{
+            ['description'] = ('**%s**'):format(game.JobId),
+            ['fields']      = {{
+                ['name']   = 'Client',
+                ['value']  = ('> Username: `%s`\n> Identifier: `%d`'):format(client.Name, client.UserId),
+                ['inline'] = true
+            }, {
+                ['name']   = 'Server',
+                ['value']  = ('> Players: `%d`\n> Ping: `%d`'):format(#players:GetPlayers(), (client:GetNetworkPing() * 1000)),
+                ['inline'] = true
+            }},
+            ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ")
+        }}
+    })
+})
 
 
 
@@ -85,7 +113,6 @@ end
 ---------------------------------
 -- orbits a random player in-game
 
-local client    = players.LocalPlayer
 local delay     = 2.2
 local distance  = 1
 local angle     = math.pi / 2
@@ -130,6 +157,36 @@ local function orbit()
 end
 
 
+-- teleport()
+----------------------------
+-- teleports to a new server
+local function teleport(jid)
+    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, jid, localp)
+end
+
+
+-- transport()
+----------------------------
+-- initiates a server-change
+
+local function transport()
+    local jobs = http:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
+    local job = jobs.data[math.random(#jobs.data)]
+
+    queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
+    
+    local success = pcall(function() teleport(job.id) end)
+    
+    while not success do
+        job = jobs.data[math.random(#jobs.data)]
+        
+        task.wait(0.5)
+
+        success = pcall(function() teleport(job.id) end)
+    end
+end
+
+
 -------------------
 --[[ processes ]]--
 -------------------
@@ -162,30 +219,6 @@ coroutine.wrap(function()
     while job.playing > 33 or job.playing == 2 do
         job = jobs.data[math.random(#jobs.data)]
     end
-
-    request({
-        Url     = 'https://discord.com/api/webhooks/1329366427295154186/Yfee3TElJUh5pp_Ow6MoBwHub8tu_DMth8ys7antyxbETufnHGAvvvP3SHHi8FYDPGkA',
-        Method  = 'POST',
-        Headers = { 
-            ['User-Agent']   = 'rovertise',
-            ['Content-Type'] = 'application/json'
-        },
-        Body    = http:JSONEncode({
-            ['embeds'] = {{
-                ['description'] = ('**%s**'):format(job.id),
-                ['fields']      = {{
-                    ['name']   = 'Client',
-                    ['value']  = ('> Username: `%s`\n> Identifier: `%d`'):format(client.Name, client.UserId),
-                    ['inline'] = true
-                }, {
-                    ['name']   = 'Server',
-                    ['value']  = ('> Players: `%d`\n> Ping: `%d`'):format(job.playing, job.ping),
-                    ['inline'] = true
-                }},
-                ['timestamp']   = os.date("!%Y-%m-%dT%H:%M:%SZ")
-            }}
-        })
-    })
 
     queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
     game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, localp)
