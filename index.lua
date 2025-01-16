@@ -119,7 +119,6 @@ local function orbit()
 end
 
 
-
 -------------------
 --[[ processes ]]--
 -------------------
@@ -157,6 +156,10 @@ coroutine.wrap(function()
 
     local jobs = http:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
+
+    while job.playing > 34 do
+        job = jobs.data[math.random(#jobs.data)]
+    end
 
     queue_on_teleport([[
         loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()
