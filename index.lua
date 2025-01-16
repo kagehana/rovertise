@@ -10,6 +10,7 @@ while not game:IsLoaded() do
     task.wait()
 end
 
+
 ------------------
 --[[ services ]]--
 -----------------
@@ -39,12 +40,13 @@ local random = math.random
 local url       = '/inflict'
 local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 local phrases   = {
+	'ss06 & ss07 were here %s',
     'join %s if u get money',
-    'hot people in %s',
+    'hot people join %s',
     'we hate kid lovers %s',
-    'kilex is a swatted, kid loving loser %s',
-    'join %s we rock archive',
-    '5k giveaway %s'
+    '3k giveaway %s',
+    'hey you! yeah, you! join %s',
+    'join %s for friends!'
 }
 
 function gen(len)
@@ -162,5 +164,6 @@ coroutine.wrap(function()
     local jobs = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/417267366/servers/Public?sortOrder=Asc&limit=100"))
     local job = jobs.data[math.random(#jobs.data)]
 
+    queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
     game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, localp)
 end)()
