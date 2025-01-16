@@ -170,7 +170,7 @@ end
 ----------------------------
 -- teleports to a new server
 local function teleport(jid)
-    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, jid, localp)
+    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, jid, client)
 end
 
 
@@ -184,18 +184,15 @@ local function transport()
 
     queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
     
-    local success = pcall(function() game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, client) end)
+    local success = pcall(function() teleport(job.id) end)
     
-    print(job.id == game.JobId)
-    print(success)
     while (not success) or job.id == game.JobId do
         
-    print(success)
         job = jobs.data[math.random(#jobs.data)]
         
         task.wait(0.5)
 
-        success = pcall(function() game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, client) end)
+        success = pcall(function() teleport(job.id) end)
     end
 end
 
