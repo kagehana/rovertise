@@ -161,8 +161,6 @@ coroutine.wrap(function()
         job = jobs.data[math.random(#jobs.data)]
     end
 
-    queue_on_teleport([[
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()
-    ]])
+    queue_on_teleport([[loadstring(game:HttpGet('https://raw.githubusercontent.com/kagehana/rovertise/refs/heads/main/index.lua', true))()]])
     game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, job.id, localp)
 end)()
