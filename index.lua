@@ -1,4 +1,4 @@
--- @ijustwantchanel
+-- @asfdajshf
 -- @lostmyarchive
 -- gg/inflict
 
@@ -83,7 +83,7 @@ local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678
 local phrases   = {
 	'ss06 & ss07 were here %s',
     	'hot people join %s',
-    	'3k giveaway %s',
+    	'nitro giveaway %s',
     	'hey you! yeah, you! join %s',
     	'join %s for friends!'
 }
