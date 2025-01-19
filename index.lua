@@ -125,7 +125,7 @@ end
 ---------------------------------
 -- orbits a random player in-game
 
-local delay     = 2.8
+local delay     = 2.15
 local distance  = 1
 local angle     = math.pi / 2
 local orbiting  = false
