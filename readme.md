@@ -8,7 +8,7 @@
 
 ## How & Why
 - `codebase`
-Since you want the bot to execute the same code over and over as it rejoins new servers, you need to have a place for the code. You can place it on **GitHub** and use a raw-content link, a raw **Pastebin** link, or just really anything with your raw, modified version of this code. An example would be: https://pastebin.com/raw/CwzKzpW4
+Since you want the bot to execute the same code over and over as it rejoins new servers, you need to have a place for the code. The script will queue this code for execution upon teleporting. You can place it on **GitHub** and use a raw-content link, a raw **Pastebin** link, or just really anything with your raw, modified version of this code. An example would be: https://pastebin.com/raw/CwzKzpW4
 - `phrases`
 Fill this with a table of strings. Example:
 ```lua
