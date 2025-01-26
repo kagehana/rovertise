@@ -1,6 +1,6 @@
 ## Variables to Set
-- `webhook`  | The webhook you want logs to be sent to.
-- `msgdelay` | The delay between advertisements, and subsequently, the delay between orbits.
+- `webhook`  | The webhook URL you want logs to be sent to.
+- `msgdelay` | The delay between advertisements, and subsequently, the delay between orbits **(2.15 IS RECOMMENDED)**.
 - `discord`  | The vanity to your server. Set this like "/<vanity>", such as "/hi"
 - `codebase` | The link to your modified version of this. The **how & why** to this is somewhere below.
 - `phrases`  | The phrases to be advertised with the vanity. The **how & why** to this is also below.
