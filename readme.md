@@ -20,5 +20,8 @@ local phrases = {
 ```
 Make sure to use **%s** in place of your server vanity. The script will automatically replace it when sending messages.
 
+## Discussion
+Yes, I'm aware this code isn't super advanced. It's simply experimental, and does the job. If you want more functionality, add it. I also posted this because people kept gate-keeping something so simple.
+
 ## Running It
 Get on an account, run the script with all set variables, and let it go.
