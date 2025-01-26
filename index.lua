@@ -2,7 +2,7 @@
 local webhook  =
 local msgdelay =
 local discord  =
-local github   =
+local codebase =
 local phrases  =
 
 
@@ -190,7 +190,7 @@ local function teleport()
 
     for k, v in ipairs(jobs.data) do
         if v.id ~= game.JobId and v.playing < 35 then
-            queue_on_teleport('loadstring(game:HttpGet(' .. github .. ', true))()')
+            queue_on_teleport('loadstring(game:HttpGet(' .. codebase .. ', true))()')
             tp:TeleportToPlaceInstance(place, v.id, client)
         end
     end
