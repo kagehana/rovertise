@@ -117,7 +117,7 @@ local random = math.random
 -- gen(len: int)
 ----------------------------
 -- generates a random string
-local chars     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+local chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 
 function gen(len)
     math.randomseed(os.time())
@@ -151,7 +151,7 @@ end
 -- orbit()
 ---------------------------------
 -- orbits a random player in-game
-local orbiting  = false
+local orbiting = false
 
 local function orbit()
     local root = client.Character.HumanoidRootPart
